@@ -1,24 +1,6 @@
 import React from "react";
-import { useState } from "react";
 
-function UserInput() {
-    const [userInput, setUserInput] = useState({
-        initialInvestment: 40000,
-        annualInvestment: 1000,
-        expectedReturn: 5,
-        duration: 10,
-    });
-
-    function handleChange(inputIdentifier, newValue) {
-
-        setUserInput(prevState => {
-            return {
-                ...prevState,
-                [inputIdentifier]: newValue
-            }
-        })
-    }
-
+function UserInput({ onChangeInput, userInput }) {
     return (
         <div id="user-input">
             <div className="input-group">
@@ -28,7 +10,7 @@ function UserInput() {
                         id="user-input"
                         type="number"
                         value={userInput.initialInvestment}
-                        onChange={(event) => handleChange(initialInvestment, event.target.value)}
+                        onChange={(event) => onChangeInput("initialInvestment", event.target.value)}
                     />
                 </div>
                 <div>
@@ -37,6 +19,7 @@ function UserInput() {
                         id="user-input"
                         type="number"
                         value={userInput.annualInvestment}
+                        onChange={(event) => onChangeInput("annualInvestment", event.target.value)}
                     />
                 </div>
             </div>
@@ -47,6 +30,7 @@ function UserInput() {
                         id="user-input"
                         type="number"
                         value={userInput.expectedReturn}
+                        onChange={(event) => onChangeInput("expectedReturn", event.target.value)}
                     />
                 </div>
                 <div>
@@ -55,6 +39,7 @@ function UserInput() {
                         id="user-input"
                         type="number"
                         value={userInput.duration}
+                        onChange={(event) => onChangeInput("duration", event.target.value)}
                     />
                 </div>
             </div>
